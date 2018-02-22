@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 import React from 'react' ; 
 import{BrowserRouter as Router, Route} from 'react-router-dom';
 import {render} from "react-dom";
+import {Link} from 'react-router-dom';
 // Initialize Firebase
  var config = {
      apiKey: "AIzaSyBcc3UXItmYRyQScs8q270UxtwenlL-MDY",
@@ -45,7 +46,7 @@ const Login =() => (
                 <div className="container">
         
                      <span className="psw ,cancelbtn ">Forgot <a href="">password?</a></span>
-                     <span className="join">You are not a member?<a >Join Now</a> </span>
+                     <span className="join">You are not a member? <Link to ="/signUp">Join Now </Link> </span>
         
                 </div>
                  <button type="button" id="logout" className="hide">Logout</button>
