@@ -1,13 +1,88 @@
+import * as firebase from "firebase";
 import React from 'react' ; 
+import{BrowserRouter as Router, Route} from 'react-router-dom';
 import {render} from "react-dom";
-import {Router, Route} from "react-router";
-class App extends React.Component {
+// Initialize Firebase
+ var config = {
+     apiKey: "AIzaSyBcc3UXItmYRyQScs8q270UxtwenlL-MDY",
+     authDomain: "login-with-data-base.firebaseapp.com",
+     databaseURL: "https://login-with-data-base.firebaseio.com",
+     projectId: "login-with-data-base",
+     storageBucket: "login-with-data-base.appspot.com",
+     messagingSenderId: "1001582318076"
+   };
+   firebase.initializeApp(config);
+
+class App extends React.Component{  
     render() {
-        <Router>
-            <Route  />
-        </Router>
+        return(
+            <Router>
+        <div>
+            <Route exact path="/" component={Login}/>  
+            <Route path="/signup" component={signUp}/>
+            </div>
+          </Router>
+        );
     };
-}
+};
+
+const Login =() => (
+            <div>
+                <h2>Login Here</h2>
+                <div className="imgcontainer">
+                    <img src="img_circle.png" alt="user pic" className="avatar" />
+                </div>
+                <div className="container">
+                    <label><b>UserEmail</b></label>
+                    <input type="text" placeholder="Enter email " name="email" id="useremail"  required/>
+    
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="userpsw" required/>
+            
+                    <button type="button">Login</button>
+                </div>
+    
+                <div className="container">
+        
+                     <span className="psw ,cancelbtn ">Forgot <a href="">password?</a></span>
+                     <span className="join">You are not a member?<a >Join Now</a> </span>
+        
+                </div>
+                 <button type="button" id="logout" className="hide">Logout</button>
+            </div>
+)
+const signUp =() => (
+            <div>
+                <div class="container">
+                    <h1>Sign Up</h1>
+                    <p>Please fill in this form to create an account.</p>
+                    <hr />
+
+                    <label><b>Name</b></label>
+                    <input type="text" placeholder="Enter Full Name" name="name" id="username" required />
+
+                    <label><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="useremail" required />
+
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="userpsw" required />
+
+                    <label><b>Repeat Password</b></label>
+                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="userpsw-repeat" required />
+
+                    <p>By creating an account you agree to our <a href="" style={{color:"dodgerblue"}}>Terms & Privacy</a>.</p>
+
+                    <div class="clearfix">
+                        <button onclick="signup()" class="signupbtn">Sign Up</button>
+                    </div>
+                </div>
+
+                <div class="alert-danger" id="custom-error">
+                    <strong>Error!</strong> Something went wrong.
+                </div>
+            </div>
+)
+
 render(<App/>, window.document.getElementById("app"));
 // var nameref =  document.getElementById("username");
 // var emailref =  document.getElementById("useremail");
